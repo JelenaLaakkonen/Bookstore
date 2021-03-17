@@ -20,7 +20,7 @@ public class BookstoreApplication {
 	}
 
 	@Bean
-	public CommandLineRunner demo(BookRepository repository, CategoryRepository cRepository, UserRepository uRepository) {
+	public CommandLineRunner demo(BookRepository bRepository, CategoryRepository cRepository, UserRepository uRepository) {
 		return (args) -> {
 
 			Category c1 = new Category("Elämänkerta");
@@ -32,8 +32,8 @@ public class BookstoreApplication {
 			Book book1 = new Book(c1, "Papan kanssa kahvilla", "Lotta-Sofia Saahko", 2020, "0000001", 14.90);
 			Book book2 = new Book(c2, "Suon villi laulu", "Delia Owens", 2020, "0000002", 14.90);
 
-			repository.save(book1);
-			repository.save(book2);
+			bRepository.save(book1);
+			bRepository.save(book2);
 
 			User user1 = new User("user", "$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", "user@user.fi","USER");
 			User user2 = new User("admin", "$2a$10$0MMwY.IQqpsVc1jC8u7IJ.2rT8b0Cd3b3sfIBGV2zfgnPGtT4r0.C", "admin@admin.fi", "ADMIN");

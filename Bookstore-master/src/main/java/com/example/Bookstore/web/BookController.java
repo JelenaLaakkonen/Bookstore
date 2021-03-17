@@ -20,26 +20,25 @@ import com.example.Bookstore.domain.CategoryRepository;
 public class BookController {
 
 	@Autowired
-	private BookRepository repository;
+	private BookRepository bRepository;
 	@Autowired
 	private CategoryRepository cRepository;
 
 	// REST all books
 	@RequestMapping(value = "/books", method = RequestMethod.GET)
 	public @ResponseBody List<Book> bookListRest() {
-		return (List<Book>) repository.findAll();
+		return (List<Book>) bRepository.findAll();
 	}
 
 	// REST books by by id
 	@RequestMapping(value = "/book/{id}", method = RequestMethod.GET)
 	public @ResponseBody Optional<Book> findBookRest(@PathVariable("id") Long id) {
-		return repository.findById(id);
+		return bRepository.findById(id);
 	}
 
 	@RequestMapping(value = "/booklist", method = RequestMethod.GET)
 	public String bookList(Model model) {
-
-		model.addAttribute("books", repository.findAll());
+		model.addAttribute("books", bRepository.findAll());
 		return "booklist";
 	}
 
@@ -52,20 +51,20 @@ public class BookController {
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String save(Book book) {
-		repository.save(book);
+		bRepository.save(book);
 		return "redirect:booklist";
 	}
 
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
 	@PreAuthorize("hasAuthority('ADMIN')")
 	public String deleteBook(@PathVariable("id") Long id, Model model) {
-		repository.deleteById(id);
+		bRepository.deleteById(id);
 		return "redirect:/booklist";
 	}
 
 	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
 	public String editBook(@PathVariable("id") Long id, Model model) {
-		model.addAttribute("book", repository.findById(id));
+		model.addAttribute("book", bRepository.findById(id));
 		model.addAttribute("categories", cRepository.findAll());
 		return "editbook";
 	}
