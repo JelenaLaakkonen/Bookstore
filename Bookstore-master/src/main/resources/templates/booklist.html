@@ -34,9 +34,8 @@
 		</tbody>
 	</table>
 
-	<form th:href="@{/addbook}">
-		<input class="btn btn-success" type="submit" value="Add book" />
-	</form>
+	<a href="/addbook" class="btn btn-success">Add book</a>
+
 
 	<form th:action="@{/logout}" method="post">
 		<input type="submit" value="Sign Out" />
