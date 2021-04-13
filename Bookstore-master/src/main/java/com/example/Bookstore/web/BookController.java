@@ -52,7 +52,7 @@ public class BookController {
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String save(Book book) {
 		bRepository.save(book);
-		return "redirect:booklist";
+		return "redirect:/booklist";
 	}
 
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
