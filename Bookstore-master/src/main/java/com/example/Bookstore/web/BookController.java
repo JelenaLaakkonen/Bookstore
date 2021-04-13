@@ -42,7 +42,7 @@ public class BookController {
 		return "booklist";
 	}
 
-	@RequestMapping(value = "/addbook")
+	@RequestMapping(value = "/addbook", method = RequestMethod.GET)
 	public String addBook(Model model) {
 		model.addAttribute("book", new Book());
 		model.addAttribute("categories", cRepository.findAll());
